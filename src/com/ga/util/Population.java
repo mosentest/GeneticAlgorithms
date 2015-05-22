@@ -26,7 +26,7 @@ public class Population {
 		this.averageFitness = 0;
 		this.relativeFitness = new double[size];
 		//设置基因长度
-		this.chromlen = 20;
+		this.chromlen = 10;
 
 		for (int i = 0; i < size; i++) {
 			pop[i] = new RosenbrockIndividual(chromlen);

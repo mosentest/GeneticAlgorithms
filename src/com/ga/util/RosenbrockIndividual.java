@@ -11,6 +11,7 @@ public class RosenbrockIndividual extends Individual {
 
 	/**
 	 * 基因型chromosome由 (x1 , x2)编码而成
+	 * 
 	 * @param chromlen
 	 */
 	RosenbrockIndividual(int chromlen) {
@@ -27,7 +28,7 @@ public class RosenbrockIndividual extends Individual {
 		code1 = codingVariable(x1);
 		code2 = codingVariable(x2);
 		chrom.setGene(0, 9, code1);
-		chrom.setGene(10, 19, code2);
+		chrom.setGene(0, 9, code2);
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class RosenbrockIndividual extends Individual {
 		String gene1, gene2;
 
 		gene1 = chrom.getGene(0, 9);
-		gene2 = chrom.getGene(10, 19);
+		gene2 = chrom.getGene(0, 9);
 
 		x1 = decodeGene(gene1);
 		x2 = decodeGene(gene2);
@@ -65,19 +66,19 @@ public class RosenbrockIndividual extends Individual {
 	public String toString() {
 		String str = "";
 		str = "基因型:" + chrom + "\t";
-		str+= "表现型:" + "[x1,x2]=" + "[" + x1 + "," + x2 + "]" + "\t";
+		str += "表现型:" + "[x1,x2]=" + "[" + x1 + "," + x2 + "]" + "\t";
 		str += "适应度:" + rosenbrock(x1, x2) + "\n";
 		return str;
 	}
 
-	
 	private String codingVariable(double x) {
 		double y = (((x + 2.048) * 1023) / 4.096);
 		String code = Integer.toBinaryString((int) y);
 
 		StringBuffer codeBuf = new StringBuffer(code);
+		//修改过这里的值
 		for (int i = code.length(); i < genelen; i++)
-			codeBuf.insert(0, '0');
+			codeBuf.insert(i, '1');
 
 		return codeBuf.toString();
 	}
@@ -89,12 +90,11 @@ public class RosenbrockIndividual extends Individual {
 		decode = value / 1023.0 * 4.096 - 2.048;
 		return decode;
 	}
-	
+
 	/**
-	 * 适应度
-	 * Rosenbrock函数: f(x1,x2) = 100*(x1**2 - x2)**2 + (1 - x1)**2 在当x在[-2.048 ,
-	 * 2.048]内时， 函数有两个极大点: f(2.048 , -2.048) = 3897.7342 f(-2.048,-2.048) =
-	 * 3905.926227 其中后者为全局最大点。
+	 * 适应度 Rosenbrock函数: f(x1,x2) = 100*(x1**2 - x2)**2 + (1 - x1)**2
+	 * 在当x在[-2.048 , 2.048]内时， 函数有两个极大点: f(2.048 , -2.048) = 3897.7342
+	 * f(-2.048,-2.048) = 3905.926227 其中后者为全局最大点。
 	 */
 	public static double rosenbrock(double x1, double x2) {
 		double fun;
@@ -103,15 +103,22 @@ public class RosenbrockIndividual extends Individual {
 	}
 
 	/**
-	 *  随机产生个体
+	 * 随机产生个体
 	 */
 	public void generateIndividual() {
-		x1 = Math.random() * 4.096 - 2.048;
-		x2 = Math.random() * 4.096 - 2.048;
+
+		x1 = getRandom();
+		x2 = getRandom();
 
 		// 同步编码和适应度
 		coding();
 		calTargetValue();
 		calFitness();
+	}
+
+	public double getRandom() {
+		double result = Math.random() * 4.096 - 2.048;
+		System.out.println(result);
+		return result;
 	}
 }

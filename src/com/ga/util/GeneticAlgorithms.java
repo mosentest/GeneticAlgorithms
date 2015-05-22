@@ -18,9 +18,9 @@ public class GeneticAlgorithms {
 	public static int populationSize;// 群体大小
 
 	static {
-		maxGeneration = 3;
-		populationSize = 4;
-		crossoverRate = 0.6;
+		maxGeneration = 10;
+		populationSize = 5;
+		crossoverRate = 1;
 		mutateRate = 0.001;
 	}
 
