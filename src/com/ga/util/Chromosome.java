@@ -11,6 +11,10 @@ public class Chromosome implements Cloneable {
 	private int chromosomeLength;// 染色体长度
 	private char defaultChar; // 默认基因填充字符
 
+	public StringBuffer getChromosome() {
+		return chromosome;
+	}
+
 	public Chromosome(int chromosomeLength) {
 		chromosome = new StringBuffer(chromosomeLength);
 		chromosome.setLength(chromosomeLength);

@@ -18,6 +18,10 @@ public class Population {
 	Individual currentBest;// 到目前代为止最好的个体
 	private int worstIndex;// bestIndividual对应的数组下标
 
+	public Individual[] getPop() {
+		return pop;
+	}
+
 	public Population(int size) {
 		this.generation = 0;
 		this.size = size;

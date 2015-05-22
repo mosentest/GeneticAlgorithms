@@ -66,7 +66,7 @@ public class RosenbrockIndividual extends Individual {
 	public String toString() {
 		String str = "";
 		str = "基因型:" + chrom + "\t";
-		str += "表现型:" + "[x1,x2]=" + "[" + x1 + "," + x2 + "]" + "\t";
+//		str += "表现型:" + "[x1,x2]=" + "[" + x1 + "," + x2 + "]" + "\t";
 		str += "适应度:" + rosenbrock(x1, x2) + "\n";
 		return str;
 	}
@@ -78,7 +78,7 @@ public class RosenbrockIndividual extends Individual {
 		StringBuffer codeBuf = new StringBuffer(code);
 		//修改过这里的值
 		for (int i = code.length(); i < genelen; i++)
-			codeBuf.insert(i, '1');
+			codeBuf.insert(0, '1');
 
 		return codeBuf.toString();
 	}

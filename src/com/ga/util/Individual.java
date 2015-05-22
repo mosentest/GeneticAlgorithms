@@ -22,6 +22,10 @@ public abstract class Individual implements Cloneable {
 	public abstract void generateIndividual();// 随机产生个体
 
 	public abstract void calTargetValue();// 获取目标函数值
+	
+	public Chromosome getChrom() {
+		return chrom;
+	}
 
 	public double getFitness() {
 		return fitness;
